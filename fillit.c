@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 17:07:23 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/15 17:24:21 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/15 18:36:06 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	*c_map(int dim)
 **		MAP MANIPULATION
 */
 
-int fits(int *map, int r, int c, tetra p)
+int fits(int *map, int r, int c, tetra p, int dim)
 {
 	int i;
 
@@ -93,9 +93,15 @@ int fits(int *map, int r, int c, tetra p)
 	if (*p.use == 0)
 		return (0);
 	while (++i < 4)
+	{
+		if (i + r == dim)
+			return (0);
+		if (ft_power(2, c) * p.row[i] > ft_power(2, dim) - 1)
+			return (0);
 		if ((map[i + r] ^ (p.row[i] * ft_power(2, c)))
 			   	!= map[i + r] + (p.row[i] * ft_power(2,c)))
 			return (0);
+	}
 	return (1);
 }
 
@@ -161,7 +167,7 @@ int		solve(int *map, int dim, int r, int c, tetra *pset, int i, int nop, int nop
 		print_map(map, dim);
 		return (1);
 	}
-	if (r == dim)
+	if (r == dim - 1)
 		return (0);
 	if (i >= nop_max)
 	{
@@ -170,13 +176,11 @@ int		solve(int *map, int dim, int r, int c, tetra *pset, int i, int nop, int nop
 		else
 			return(solve(map, dim,  r, c + 1, pset, 0, nop, nop_max));
 	}
-	if (!fits(map, r, c, pset[i]))
+	if (!fits(map, r, c, pset[i], dim))
 		return(solve(map, dim,  r, c, pset, i + 1, nop, nop_max));
 	else
 	{
 		place_rmv(map, r, c, pset[i], 0);
-		print_map(map, dim);
-		printf("%d", *pset[i].use);
 		if (c == dim - 1)
 		{
 			if(solve(map, dim, r + 1, 0, pset, 0, nop - 1, nop_max))
@@ -222,9 +226,7 @@ int main(int argc, char **argv)
 	return (solve(map, 5, 0, 0, pset, 0, nop, nop));
 	printf("%d\n", nop);
 	//test fits
-	printf("%d\n", fits(map, r1, c1, pset[p1]));
 	place_rmv(map, r1, c1, pset[p1], 0);
-	printf("%d\n", fits(map, r2, c2, pset[p2]));
 	place_rmv(map, r2, c2, pset[p2], 0);
 	place_rmv(map, r2, c2, pset[p2], 1);
 	print_map(map, 5);
