@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 17:07:23 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/15 18:36:06 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/16 06:21:43 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,11 @@ void	place_rmv(int *map, int r, int c, tetra p, int rmv)
 	if (rmv == 1)
 		*p.use = 1;
 	else
+	{
 		*p.use = 0;
+		*p.r = r;
+		*p.c = c;
+	}
 }
 
 /*
@@ -217,18 +221,26 @@ int main(int argc, char **argv)
 	int r1 = atoi(argv[2]);
 	int c1 = atoi(argv[3]);
 	int nop;
+	int fits_ret;
 	int p2 = atoi(argv[4]);
 	int r2 = atoi(argv[5]);
 	int c2 = atoi(argv[6]);
 	int	*map = c_map(5);
 	tetra *pset = (tetra*)malloc(10 * sizeof(tetra));
 	nop = c_pset(fd, &pset);
-	return (solve(map, 5, 0, 0, pset, 0, nop, nop));
 	printf("%d\n", nop);
+	printf("%d\n",solve(map, 5, 0, 0,pset, 0, nop, nop));  
 	//test fits
-	place_rmv(map, r1, c1, pset[p1], 0);
-	place_rmv(map, r2, c2, pset[p2], 0);
-	place_rmv(map, r2, c2, pset[p2], 1);
+	if ((fits_ret = fits(map, r1, c1, pset[p1], 5)) == 1)
+		place_rmv(map, r1, c1, pset[p1], 0);
+	printf("%d -- 1st\n", fits_ret);
+	if ((fits_ret = fits(map, r2, c2, pset[p2], 5)) == 1)
+		place_rmv(map, r2, c2, pset[p2], 0);
+	printf("%d -- 2nd\n", fits_ret);
+
+
+	//place_rmv(map, r2, c2, pset[p2], 0);
+	//place_rmv(map, r2, c2, pset[p2], 1);
 	print_map(map, 5);
 	ft_putstr("\n");
 	//print peice values
