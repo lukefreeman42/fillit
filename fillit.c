@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 17:07:23 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/15 16:08:33 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/15 16:10:57 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	c_p(tetra *pset, int i, char *rb)
 	m_top(pset[i]);
 }	
 
-void	c_pset(int fd, tetra **pset)
+int	c_pset(int fd, tetra **pset)
 {
 	char rb[21];
 	int i;
@@ -69,6 +69,7 @@ void	c_pset(int fd, tetra **pset)
 	i = 0;
 	while (read(fd, rb, 21) > 0)
 		c_p(*pset, i++, rb);
+	return (i);
 }
 
 int	*c_map(int dim)
@@ -163,13 +164,14 @@ int main(int argc, char **argv)
 	int p1 = atoi(argv[1]);
 	int r1 = atoi(argv[2]);
 	int c1 = atoi(argv[3]);
-
+	int nop;
 	int p2 = atoi(argv[4]);
 	int r2 = atoi(argv[5]);
 	int c2 = atoi(argv[6]);
 	int	*map = c_map(5);
 	tetra *pset = (tetra*)malloc(10 * sizeof(tetra));
-	c_pset(fd, &pset);
+	nop = c_pset(fd, &pset);
+	printf("%d\n", nop);
 	//test fits
 	printf("%d\n", fits(map, r1, c1, pset[p1]));
 	place_rmv(map, r1, c1, pset[p1], 0);
