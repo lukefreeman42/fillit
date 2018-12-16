@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 17:07:23 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/15 16:10:57 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/15 17:24:21 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	c_p(tetra *pset, int i, char *rb)
 
 	j = 0;
 	pset[i].row = (int*)ft_memalloc(4 * sizeof(int));
-	pset[i].use = 1;
+	pset[i].use = (int*)ft_memalloc(sizeof(int));
+	*pset[i].use = 1;
 	while (j < 20)
 	{
 		if (j % 5 == 0)
@@ -89,7 +90,7 @@ int fits(int *map, int r, int c, tetra p)
 	int i;
 
 	i = -1;
-	if (p.use == 0)
+	if (*p.use == 0)
 		return (0);
 	while (++i < 4)
 		if ((map[i + r] ^ (p.row[i] * ft_power(2, c)))
@@ -106,9 +107,9 @@ void	place_rmv(int *map, int r, int c, tetra p, int rmv)
 	while (++i < 4)
 		map[i + r] = (map[i + r] ^ (p.row[i] * ft_power(2, c)));
 	if (rmv == 1)
-		p.use = 1;
+		*p.use = 1;
 	else
-		p.use = 0;
+		*p.use = 0;
 }
 
 /*
@@ -148,9 +149,56 @@ void	print_map(int *map, int dim)
 	}
 }
 
+
 /*
 **		SOLVE
 */
+
+int		solve(int *map, int dim, int r, int c, tetra *pset, int i, int nop, int nop_max)
+{
+	if (nop == 0)
+	{
+		print_map(map, dim);
+		return (1);
+	}
+	if (r == dim)
+		return (0);
+	if (i >= nop_max)
+	{
+		if (c == dim - 1)
+			return(solve(map, dim, r + 1, 0, pset, 0, nop, nop_max));
+		else
+			return(solve(map, dim,  r, c + 1, pset, 0, nop, nop_max));
+	}
+	if (!fits(map, r, c, pset[i]))
+		return(solve(map, dim,  r, c, pset, i + 1, nop, nop_max));
+	else
+	{
+		place_rmv(map, r, c, pset[i], 0);
+		print_map(map, dim);
+		printf("%d", *pset[i].use);
+		if (c == dim - 1)
+		{
+			if(solve(map, dim, r + 1, 0, pset, 0, nop - 1, nop_max))
+				return (1);
+			else
+			{
+				place_rmv(map, r, c, pset[i], 1);
+				return (solve(map, dim,  r, c, pset, i + 1, nop, nop_max));
+			}
+		}
+		else
+		{
+			if(solve(map, dim, r, c + 1, pset, 0, nop - 1, nop_max))
+				return (1);
+			else
+			{
+				place_rmv(map, r, c, pset[i], 1);
+				return (solve(map, dim,  r, c, pset, i + 1, nop, nop_max));
+			}
+		}
+	}
+}
 
 /*
 **		MAIN
@@ -171,6 +219,7 @@ int main(int argc, char **argv)
 	int	*map = c_map(5);
 	tetra *pset = (tetra*)malloc(10 * sizeof(tetra));
 	nop = c_pset(fd, &pset);
+	return (solve(map, 5, 0, 0, pset, 0, nop, nop));
 	printf("%d\n", nop);
 	//test fits
 	printf("%d\n", fits(map, r1, c1, pset[p1]));

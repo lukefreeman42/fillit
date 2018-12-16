@@ -6,12 +6,12 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 11:28:16 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/15 15:27:02 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/15 17:23:35 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 typedef struct {
 	int	*row;
-	int	use;
+	int	*use;
 }		tetra;
