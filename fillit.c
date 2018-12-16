@@ -6,26 +6,28 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 17:07:23 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/15 11:56:21 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/15 16:08:33 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "stdio.h"
 
-void	left_most(tetra p)
+/*
+**		CREATE ENVIORNMENT
+*/
+
+void	m_lft(tetra p)
 {
 	int i;
+
 	while (p.row[0] % 2 == 0 && p.row[1] % 2 == 0 
-			&&  p.row[2] % 2 == 0 && p.row[3] % 2 == 0)
-	{
-		i = -1;
+			&&  p.row[2] % 2 == 0 && p.row[3] % 2 == 0 && (i = -1))
 		while (++i < 4)
 			p.row[i] /= 2;
-	}
 }
 
-void	top_most(tetra p) //takes in a peice and shift it to its topmost position.
+void	m_top(tetra p)
 {
 	int i;
 
@@ -44,8 +46,7 @@ void	c_p(tetra *pset, int i, char *rb)
 	int bin;
 
 	j = 0;
-	pset[i].row = (int*)malloc(4 * sizeof(int));
-	pset[i].row = (int*)ft_memset(pset[i].row, 0, 16);
+	pset[i].row = (int*)ft_memalloc(4 * sizeof(int));
 	pset[i].use = 1;
 	while (j < 20)
 	{
@@ -56,59 +57,62 @@ void	c_p(tetra *pset, int i, char *rb)
 		bin *= 2;
 		j++;
 	}
-	left_most(pset[i]);
-	top_most(pset[i]);
-}			
+	m_lft(pset[i]);
+	m_top(pset[i]);
+}	
 
 void	c_pset(int fd, tetra **pset)
 {
 	char rb[21];
 	int i;
+
 	i = 0;
 	while (read(fd, rb, 21) > 0)
-	{
-		c_p(*pset, i, rb);
-		i++;
-	}
+		c_p(*pset, i++, rb);
 }
 
 int	*c_map(int dim)
 {
 	int *map;
 
-	map = (int*)malloc(dim * sizeof(int));
-	map = (int*)ft_memset(map, 0, dim * 4);
+	map = (int*)ft_memalloc(dim * sizeof(int));
 	return (map);
 }
 
+/*
+**		MAP MANIPULATION
+*/
 
-
-int fits(int *map, int r, int c, tetra p) //might need dimension parameter
+int fits(int *map, int r, int c, tetra p)
 {
 	int i;
 
-	i = 0;
-	while (i < 4)
-	{
-		if ((map[i + r] ^ (p.row[i] * ft_power(2, c))) != map[i + r] + (p.row[i] * ft_power(2,c)))
+	i = -1;
+	if (p.use == 0)
+		return (0);
+	while (++i < 4)
+		if ((map[i + r] ^ (p.row[i] * ft_power(2, c)))
+			   	!= map[i + r] + (p.row[i] * ft_power(2,c)))
 			return (0);
-		i++;
-	}
 	return (1);
 }
 
-void	place_p(int *map, int r, int c, tetra p)
+void	place_rmv(int *map, int r, int c, tetra p, int rmv)
 {
 	int i;
 	
-	i = 0;
-	while (i < 4)
-	{
+	i = -1;
+	while (++i < 4)
 		map[i + r] = (map[i + r] ^ (p.row[i] * ft_power(2, c)));
-		i++;
-	}
-	p.use = 0;
+	if (rmv == 1)
+		p.use = 1;
+	else
+		p.use = 0;
 }
+
+/*
+**		PRINT
+*/
 
 void	print_row(int row, int bin, int dim)
 {
@@ -130,7 +134,7 @@ void	print_row(int row, int bin, int dim)
 	}
 }
 
-void	print_map(int *map, int dim) //need dim because of max bin.
+void	print_map(int *map, int dim)
 {
 	int i;
 
@@ -142,6 +146,14 @@ void	print_map(int *map, int dim) //need dim because of max bin.
 		i++;
 	}
 }
+
+/*
+**		SOLVE
+*/
+
+/*
+**		MAIN
+*/
 
 int main(int argc, char **argv)
 {
@@ -160,9 +172,10 @@ int main(int argc, char **argv)
 	c_pset(fd, &pset);
 	//test fits
 	printf("%d\n", fits(map, r1, c1, pset[p1]));
-	place_p(map, r1, c1, pset[p1]);
+	place_rmv(map, r1, c1, pset[p1], 0);
 	printf("%d\n", fits(map, r2, c2, pset[p2]));
-	place_p(map, r2, c2, pset[p2]);
+	place_rmv(map, r2, c2, pset[p2], 0);
+	place_rmv(map, r2, c2, pset[p2], 1);
 	print_map(map, 5);
 	ft_putstr("\n");
 	//print peice values
