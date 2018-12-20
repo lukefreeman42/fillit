@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:05:46 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/19 19:26:14 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/19 19:39:53 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		fits(env e, int num, int r, int c)
 		if (ft_power(2, c) * e.tset[num].row[i] > ft_power(2, e.dim) - 1)
 			return (0);
 		if ((e.map[i + r] ^ (e.tset[num].row[i] * ft_power(2, c)))
-			!= e.map[i + r] + (e.tset[num].row[i] * ft_power(2,c)))
+				!= e.map[i + r] + (e.tset[num].row[i] * ft_power(2, c)))
 			return (0);
 	}
 	return (1);

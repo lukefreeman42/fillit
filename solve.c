@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 17:23:23 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/19 19:36:47 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/19 19:41:14 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ int		t_check(env e)
 	while (++i < e.nop_m)
 		if (e.tset[i].avail == 1)
 			num += 1;
-
 	return (num);
 }
 
-int		solve(env e,int num, int r, int c)
+int		solve(env e, int num, int r, int c)
 {
 	if (t_check(e) == 0)
 		return (1);
@@ -52,7 +51,7 @@ int		solve(env e,int num, int r, int c)
 		}
 		else
 		{
-			if(solve(e, 0, r, c + 1))
+			if (solve(e, 0, r, c + 1))
 				return (1);
 			else if (rmv(e, num, r, c))
 				return (solve(e, num + 1, r, c));

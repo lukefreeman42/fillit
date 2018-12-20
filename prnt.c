@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:31:21 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/19 15:36:43 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/19 19:40:22 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_row(int row, int bin, int dim, tetra *tset)
 {
 	int c;
-	
+
 	c = dim - 1;
 	if (dim > 0)
 	{
