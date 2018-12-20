@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:05:46 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/19 12:19:07 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/19 19:26:14 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		fits(env e, int num, int r, int c)
 	return (1);
 }
 
-void	place(env e, int num, int r, int c)
+int		place(env e, int num, int r, int c)
 {
 	int i;
 
@@ -43,9 +43,10 @@ void	place(env e, int num, int r, int c)
 	e.tset[num].avail = 0;
 	e.tset[num].r = r;
 	e.tset[num].c = c;
+	return (1);
 }
 
-void	rmv(env e, int num, int r, int c)
+int		rmv(env e, int num, int r, int c)
 {
 	int i;
 
@@ -53,4 +54,5 @@ void	rmv(env e, int num, int r, int c)
 	while (++i < 4)
 		e.map[i + r] = (e.map[i + r] ^ (e.tset[num].row[i] * ft_power(2, c)));
 	e.tset[num].avail = 1;
+	return (1);
 }

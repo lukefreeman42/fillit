@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 17:23:23 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/19 18:52:47 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/19 19:36:47 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,22 @@ int		solve(env e,int num, int r, int c)
 	}
 	if (!fits(e, num, r, c))
 		return (solve(e, num + 1, r, c));
-	else
+	else if ((place(e, num, r, c)))
 	{
-		place(e, num, r, c);
 		if (c == e.dim - 1)
 		{
 			if (solve(e, 0, r + 1, 0))
 				return (1);
-			else
-			{
-				rmv(e, num, r, c);
+			else if ((rmv(e, num, r, c)))
 				return (solve(e, num + 1, r, c));
-			}
 		}
 		else
 		{
 			if(solve(e, 0, r, c + 1))
 				return (1);
-			else
-			{
-				rmv(e, num, r, c);
+			else if (rmv(e, num, r, c))
 				return (solve(e, num + 1, r, c));
-			}
 		}
 	}
+	return (0);
 }

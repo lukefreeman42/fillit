@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 11:31:24 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/19 17:37:24 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/19 19:25:42 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		solve(env e, int num, int r, int c);
 env		*c_env(int dim, char *file);
 void	change_dim(env *e, int dim);
 int		fits(env e, int num, int r, int c);
-void	place(env e, int num, int r, int c);
-void	rmv(env e, int num, int r, int c);
+int		place(env e, int num, int r, int c);
+int		rmv(env e, int num, int r, int c);
 void	print_row(int row, int bin, int dim, tetra *tset);
 void	print_map(env e);	
