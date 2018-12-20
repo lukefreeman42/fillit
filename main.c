@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:38:19 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/19 19:05:12 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/20 10:35:50 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int		main(int argc, char **argv)
 //	if (fits(*e, t, r, c))
 //		place(*e, t, r, c);
 	ft_putstr("\n");
-	print_map(*e);
+	make_map(*e);
 	return (0);
 }

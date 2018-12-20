@@ -6,44 +6,64 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:31:21 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/19 19:40:22 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/20 10:35:30 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	print_row(int row, int bin, int dim, tetra *tset)
+static void	print_map(int dim, char map[dim][dim])
 {
-	int c;
+	int i;
+	int j;
 
-	c = dim - 1;
-	if (dim > 0)
+
+	j = 0;
+	while (j < dim)
 	{
-		if (row / bin == 1)
+		i = 0;
+		while (i < dim)
+			write(1, &map[j][i++], 1);
+		ft_putstr("\n");
+		j++;
+	}
+}
+
+static void	plac_t(int dim, char map[dim][dim], tetra t)
+{
+	int i;
+	int j;
+
+	j = -1;
+	while (++j < 4)
+	{
+		i = -1;
+		while (++i < 4)
 		{
-			row -= bin;
-			bin /= 2;
-			print_row(row, bin, dim - 1, tset);
-			ft_putstr("#");
-		}
-		else
-		{
-			bin /= 2;
-			print_row(row, bin, dim - 1, tset);
-			ft_putstr(".");
+			if (t.row[j] % 2 == 1)
+				map[t.r + j][t.c + i] = t.a;
+			t.row[j] /= 2;
 		}
 	}
 }
 
-void	print_map(env e)
+void	make_map(env e)
 {
+	char map[e.dim][e.dim];
 	int i;
+	int j;
 
-	i = 0;
-	while (i < e.dim)
+
+	j = 0;
+	while (j < e.dim)
 	{
-		print_row(e.map[i], ft_power(2, e.dim - 1), e.dim, e.tset);
-		ft_putstr("\n");
-		i++;
+		i = 0;
+		while (i < e.dim)
+			map[j][i++] = '.';
+		j++;
 	}
+	i = 0;
+	while (i < e.nop_m)
+		plac_t(e.dim, map, e.tset[i++]);
+	print_map(e.dim, map);
 }
