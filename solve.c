@@ -6,13 +6,13 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 17:23:23 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/19 19:41:14 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/21 19:09:44 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		t_check(env e)
+int		t_check(t_env e)
 {
 	int num;
 	int	i;
@@ -25,7 +25,7 @@ int		t_check(env e)
 	return (num);
 }
 
-int		solve(env e, int num, int r, int c)
+int		solve(t_env e, int num, int r, int c)
 {
 	if (t_check(e) == 0)
 		return (1);

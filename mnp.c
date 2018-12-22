@@ -6,13 +6,13 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:05:46 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/19 19:39:53 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/21 19:09:22 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		fits(env e, int num, int r, int c)
+int		fits(t_env e, int num, int r, int c)
 {
 	int i;
 
@@ -33,7 +33,7 @@ int		fits(env e, int num, int r, int c)
 	return (1);
 }
 
-int		place(env e, int num, int r, int c)
+int		place(t_env e, int num, int r, int c)
 {
 	int i;
 
@@ -46,7 +46,7 @@ int		place(env e, int num, int r, int c)
 	return (1);
 }
 
-int		rmv(env e, int num, int r, int c)
+int		rmv(t_env e, int num, int r, int c)
 {
 	int i;
 

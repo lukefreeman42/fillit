@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:31:21 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/20 17:41:08 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/21 19:13:56 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		print_map(int dim, char map[dim][dim])
 	}
 }
 
-static void		plac_t(int dim, char map[dim][dim], tetra t)
+static void		plac_t(int dim, char map[dim][dim], t_tetra t)
 {
 	int i;
 	int j;
@@ -46,7 +46,7 @@ static void		plac_t(int dim, char map[dim][dim], tetra t)
 	}
 }
 
-void			make_map(env e)
+void			make_map(t_env e)
 {
 	char	map[e.dim][e.dim];
 	int		i;

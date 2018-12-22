@@ -6,13 +6,13 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 16:12:31 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/21 13:36:09 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/21 19:12:32 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void		standardize(tetra t)
+static void		standardize(t_tetra t)
 {
 	int i;
 
@@ -28,7 +28,7 @@ static void		standardize(tetra t)
 	}
 }
 
-static void		c_tetra(tetra *tset, int num, char *src)
+static void		c_tetra(t_tetra *tset, int num, char *src)
 {
 	int rd;
 	int bin;
@@ -57,7 +57,7 @@ static void		c_tetra(tetra *tset, int num, char *src)
 	standardize(tset[num]);
 }
 
-static int		c_tset(char *file, tetra **tset)
+static int		c_tset(char *file, t_tetra **tset)
 {
 	char	rb[21];
 	int		num;
@@ -68,7 +68,7 @@ static int		c_tset(char *file, tetra **tset)
 	fd = open(file, O_RDONLY);
 	if (NUMO_T < 1)
 		error();
-	*tset = (tetra*)ft_memalloc(NUMO_T * sizeof(tetra));
+	*tset = (t_tetra*)ft_memalloc(NUMO_T * sizeof(t_tetra));
 	while ((i = read(fd, rb, 21)) > 0)
 	{
 		c_tetra(*tset, num++, rb);
@@ -83,12 +83,12 @@ static int		c_tset(char *file, tetra **tset)
 	return (num);
 }
 
-env				*c_env(int dim, char *file)
+t_env				*c_env(int dim, char *file)
 {
-	env		*e;
-	tetra	*tset;
+	t_env		*e;
+	t_tetra	*tset;
 
-	e = (env*)ft_memalloc(sizeof(env));
+	e = (t_env*)ft_memalloc(sizeof(t_env));
 	e->map = (int*)ft_memalloc(dim * sizeof(int));
 	e->dim = dim;
 	e->nop_m = c_tset(file, &tset);
@@ -96,7 +96,7 @@ env				*c_env(int dim, char *file)
 	return (e);
 }
 
-void			change_dim(env *e, int dim)
+void			change_dim(t_env *e, int dim)
 {
 	free(e->map);
 	e->map = (int*)ft_memalloc(dim * sizeof(int));
