@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:38:19 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/21 19:34:15 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/21 19:54:40 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		main(int argc, char **argv)
 {
 	char	*file;
 	int		dim;
-	t_env		*e;
+	t_env	*e;
 
 	if (argc != 2)
 		usage();

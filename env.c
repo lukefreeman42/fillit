@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 16:12:31 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/21 19:12:32 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/21 19:54:02 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ static int		c_tset(char *file, t_tetra **tset)
 	return (num);
 }
 
-t_env				*c_env(int dim, char *file)
+t_env			*c_env(int dim, char *file)
 {
-	t_env		*e;
+	t_env	*e;
 	t_tetra	*tset;
 
 	e = (t_env*)ft_memalloc(sizeof(t_env));

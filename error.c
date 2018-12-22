@@ -6,18 +6,18 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 10:55:50 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/21 19:33:27 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/21 19:47:42 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
 
 void		usage(void)
 {
 	ft_putstr("./fillit file");
 	exit(-1);
 }
+
 void		error(void)
 {
 	ft_putstr("error");

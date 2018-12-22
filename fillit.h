@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 11:31:24 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/21 19:33:43 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/21 19:54:22 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct	s_env
 
 void			usage(void);
 int				solve(t_env e, int num, int r, int c);
-t_env				*c_env(int dim, char *file);
+t_env			*c_env(int dim, char *file);
 void			change_dim(t_env *e, int dim);
 int				fits(t_env e, int num, int r, int c);
 int				place(t_env e, int num, int r, int c);
