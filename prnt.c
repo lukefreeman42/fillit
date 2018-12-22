@@ -6,17 +6,16 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:31:21 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/20 10:35:30 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/20 17:41:08 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void	print_map(int dim, char map[dim][dim])
+static void		print_map(int dim, char map[dim][dim])
 {
 	int i;
 	int j;
-
 
 	j = 0;
 	while (j < dim)
@@ -29,7 +28,7 @@ static void	print_map(int dim, char map[dim][dim])
 	}
 }
 
-static void	plac_t(int dim, char map[dim][dim], tetra t)
+static void		plac_t(int dim, char map[dim][dim], tetra t)
 {
 	int i;
 	int j;
@@ -47,12 +46,11 @@ static void	plac_t(int dim, char map[dim][dim], tetra t)
 	}
 }
 
-void	make_map(env e)
+void			make_map(env e)
 {
-	char map[e.dim][e.dim];
-	int i;
-	int j;
-
+	char	map[e.dim][e.dim];
+	int		i;
+	int		j;
 
 	j = 0;
 	while (j < e.dim)
