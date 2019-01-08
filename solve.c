@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 17:23:23 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/21 19:09:44 by llelias          ###   ########.fr       */
+/*   Updated: 2019/01/07 16:04:41 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,32 @@ int		solve(t_env e, int num, int r, int c)
 		}
 	}
 	return (0);
+}
+
+int		sharris_try(t_env e, int i)
+{
+	int r;
+	int c;
+	int sf;
+
+	sf = 0;
+	r = 0;
+	while(r < e.dim && t_check(e) && sf == 0)
+	{
+		c = 0
+		while (c < e.dim && sf == 0)
+		{
+			if(fits(e, i, r, c) && place(e, i, r, c))
+				if(sharris_try(t_env, i + 1))
+					sf = 1;
+			if(sf = 0)
+				rmv(e, i, r, c);
+			c++;
+		}
+		r++;
+	}
+	if (t_check(e) == 0 || sf)
+		return (1);
+	else
+		return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 11:31:24 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/21 19:54:22 by llelias          ###   ########.fr       */
+/*   Updated: 2019/01/07 16:06:07 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_env
 	int		nop_m;
 }				t_env;
 
+int				sharris(t_env e, int i);
 void			usage(void);
 int				solve(t_env e, int num, int r, int c);
 t_env			*c_env(int dim, char *file);
