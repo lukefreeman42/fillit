@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_sh.c                                         :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/19 17:23:23 by llelias           #+#    #+#             */
-/*   Updated: 2019/01/07 17:11:20 by llelias          ###   ########.fr       */
+/*   Created: 2018/12/15 10:19:22 by llelias           #+#    #+#             */
+/*   Updated: 2018/12/21 19:52:18 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		solve_sh(t_env e, int i)
+static int	error(void)
 {
-	int r;
-	int c;
-	int sf;
+	ft_putstr("Does not support negative exponents... yet");
+	return (-1);
+}
 
-	sf = 0;
-	r = 0;
-	while(r < e.dim && t_check(e) && sf == 0)
-	{
-		c = 0;
-		while (c < e.dim && sf == 0)
-		{
-			if (place(e, i, r, c))
-				if (solve_sh(e, i + 1))
-					sf = 1;
-			if (sf == 0)
-				rmv(e, i, r, c);
-			c++;
-		}
-		r++;
-	}
-	if (t_check(e) == 0 || sf)
-		return (1);
-	else
-		return (0);
+int			ft_power(int n, int p)
+{
+	int tot;
+
+	tot = 1;
+	if (p < 0)
+		return (error());
+	while (p-- > 0)
+		tot *= n;
+	return (tot);
 }

@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/19 15:38:19 by llelias           #+#    #+#             */
-/*   Updated: 2019/01/07 16:50:51 by llelias          ###   ########.fr       */
+/*   Created: 2018/11/29 08:28:07 by llelias           #+#    #+#             */
+/*   Updated: 2018/11/29 08:29:25 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-int		main(int argc, char **argv)
+char	*ft_strnew(size_t n)
 {
-	char	*file;
-	int		dim;
-	t_env	*e;
-
-	dim = 0;
-	if (argc != 2)
-		usage();
-	file = argv[1];
-	e = c_env(dim, file);
-	dim = ft_nsqr(e->nop_m * 4);
-	change_dim(e, dim);
-	while ((!solve_sh(*e, 0)))
-		change_dim(e, e->dim + 1);
-	make_map(*e);
-	return (0);
+	return ((char*)ft_memalloc(n + 1));
 }
