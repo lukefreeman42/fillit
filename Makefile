@@ -1,19 +1,19 @@
 NAME = fillit
 
-FLAGS = -Wall -Wextra -Werror -pedantic -g
+FLAGS = -Wall -Wextra -Werror -pedantic
 
-IDIR = ./incs
+IDIR = inc
 
-SDIR = ./srcs
+SDIR = src
 
-SRC = error.c main.c env.c prnt.c solve_sh.c mnp.c solve_ll.c
+SRC = $(SDIR)/error.c $(SDIR)/main.c $(SDIR)/env.c $(SDIR)/prnt.c $(SDIR)/solve_sh.c $(SDIR)/mnp.c $(SDIR)/solve_ll.c
 
 LIB = ./libft
 
 default: all
 
 all: $(SRC)
-	@gcc $(SRC) -L $(LIB) -I $(LIB) -lft $(FLAGS) -o $(NAME)
+	@gcc $(SRC) -L $(IDIR)/$(LIB) -I $(IDIR)/$(LIB) -I $(IDIR) -lft $(FLAGS) -o $(NAME)
 
 clean:
 	@rm -rf $(NAME).dSYM
