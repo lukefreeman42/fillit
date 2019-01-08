@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 10:55:50 by llelias           #+#    #+#             */
-/*   Updated: 2019/01/08 04:28:11 by llelias          ###   ########.fr       */
+/*   Updated: 2019/01/08 04:42:25 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,13 @@ static int	check_tbl(int tbl[4][4])
 static int	valid_t(t_tetra t)
 {
 	int tbl[4][4];
-	int row[4] = {t.row[0], t.row[1], t.row[2], t.row[3]};
+	int row[4];
 	int i;
 	int j;
 
+	i = -1;
+	while (++i < 4)
+		row[i] = t.row[i];
 	i = -1;
 	j = -1;
 	while (++i < 4)
