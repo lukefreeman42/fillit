@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 16:12:31 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/21 19:54:02 by llelias          ###   ########.fr       */
+/*   Updated: 2018/12/22 14:45:41 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void		c_tetra(t_tetra *tset, int num, char *src)
 				error();
 		rd++;
 	}
-	if (hash > 4)
+	if (hash != 4)
 		error();
 	standardize(tset[num]);
 }

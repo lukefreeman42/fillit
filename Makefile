@@ -6,7 +6,7 @@ IDIR = ./incs
 
 SDIR = ./srcs
 
-SRC = $(SDIR)/error.c $(SDIR)/main.c $(SDIR)/env.c $(SDIR)/prnt.c $(SDIR)/solve.c $(SDIR)/mnp.c 
+SRC = error.c main.c env.c prnt.c solve_sh.c mnp.c solve_ll.c
 
 LIB = ./libft
 

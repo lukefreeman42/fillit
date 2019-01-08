@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 12:05:46 by llelias           #+#    #+#             */
-/*   Updated: 2018/12/21 19:09:22 by llelias          ###   ########.fr       */
+/*   Updated: 2019/01/07 16:54:40 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,19 @@ int		fits(t_env e, int num, int r, int c)
 int		place(t_env e, int num, int r, int c)
 {
 	int i;
+	int flag;
 
+	flag = 0;
 	i = -1;
+	if (!fits(e, num, r, c))
+			flag = 1;
 	while (++i < 4)
 		e.map[i + r] = (e.map[i + r] ^ (e.tset[num].row[i] * ft_power(2, c)));
 	e.tset[num].avail = 0;
 	e.tset[num].r = r;
 	e.tset[num].c = c;
+	if (flag)
+		return (0);
 	return (1);
 }
 
