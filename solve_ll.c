@@ -6,11 +6,18 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 17:23:23 by llelias           #+#    #+#             */
-/*   Updated: 2019/01/07 16:28:33 by llelias          ###   ########.fr       */
+/*   Updated: 2019/01/07 17:11:01 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+/*
+** t_check(t_env e) will check the array of peices in enviornment e.
+** It will check how many peices are still available to be placed. This is
+** used to find out when all the  peices have been placed, and terminate any
+** recurssive processes.
+*/
 
 int		t_check(t_env e)
 {
@@ -24,6 +31,15 @@ int		t_check(t_env e)
 			num += 1;
 	return (num);
 }
+
+/*
+** This is a backtracking algorithm that will solve fillit. The algorithm
+** will check to see if peice NUM can be placed at cordinate (Column, Row) on the map 
+** contained in the Enviornment E. If the peice cannot be placed it will attempt to
+** peice NUM + 1 until all peices have been attempted. If not one can be placed on that
+** spot it will then move to the next coordinate. It will return a 1 once all peices are 
+** placed, or a 0 should the puzzle be unsolvable with the dimentions stored in E.
+*/
 
 int		solve_ll(t_env e, int num, int r, int c)
 {
