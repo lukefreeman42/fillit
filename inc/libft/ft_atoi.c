@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 17:59:39 by llelias           #+#    #+#             */
-/*   Updated: 2019/01/08 05:17:38 by llelias          ###   ########.fr       */
+/*   Updated: 2019/01/08 05:40:50 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int			ft_isdigit(int c)
 
 static int			ft_isws(int c)
 {
-	if (c == (int)' ' || c == (int)'\n' || c == (int)'\t' || c ==(int) '\r'
+	if (c == (int)' ' || c == (int)'\n' || c == (int)'\t' || c == (int)'\r'
 			|| c == (int)'\v' || c == (int)'\f')
 		return (1);
 	else
