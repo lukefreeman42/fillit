@@ -1,6 +1,6 @@
 NAME = fillit
 
-FLAGS = -Wall -Wextra -Werror -pedantic
+FLAGS = -Wall -Wextra -Werror
 
 IDIR = inc
 
@@ -17,3 +17,8 @@ all: $(SRC)
 
 clean:
 	@rm -rf $(NAME).dSYM
+
+fclean: clean
+	@rm -fr $(NAME)
+
+re: fclean all
