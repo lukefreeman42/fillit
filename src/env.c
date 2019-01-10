@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 16:12:31 by llelias           #+#    #+#             */
-/*   Updated: 2019/01/09 17:14:45 by llelias          ###   ########.fr       */
+/*   Updated: 2019/01/09 17:38:15 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,25 @@ static int		c_tset(char *file, t_tetra **tset)
 	char	rb[21];
 	int		num;
 	int		fd;
-	int		i;
+	int		i[2];
 
 	num = 0;
 	fd = open(file, O_RDONLY);
 	if (NUMO_T < 1)
 		error();
 	*tset = (t_tetra*)ft_memalloc(NUMO_T * sizeof(t_tetra));
-	while ((i = read(fd, rb, 21)) > 0)
+	while ((i[0] = read(fd, rb, 21)) > 0)
 	{
 		c_tetra(*tset, num++, rb);
-		if (i != 20 && i != 21)
+		if (i[0] != 20 && i[0] != 21)
 			error();
+		i[1] = i[0];
 	}
-	i = -1;
-	while (i < num)
-		(*tset)[i++].avail = 1;
+	if (i[1] != 20)
+		error();
+	i[0] = -1;
+	while (i[0] < num)
+		(*tset)[i[0]++].avail = 1;
 	if (!valid_tset(*tset, num))
 		error();
 	return (num);

@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:38:19 by llelias           #+#    #+#             */
-/*   Updated: 2019/01/08 05:30:50 by llelias          ###   ########.fr       */
+/*   Updated: 2019/01/09 17:28:34 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		main(int argc, char **argv)
 	int		alg;
 	int		flag;
 
-	flag = 0;
+	flag = 1;
 	alg = 0;
 	if (flag)
 	{
