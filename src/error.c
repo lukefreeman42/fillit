@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 10:55:50 by llelias           #+#    #+#             */
-/*   Updated: 2019/01/08 04:42:25 by llelias          ###   ########.fr       */
+/*   Updated: 2019/01/09 17:06:00 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		usage(void)
 {
-	ft_putstr("./fillit file");
+	ft_putstr("USAGE: ./fillit file\n");
 	exit(-1);
 }
 

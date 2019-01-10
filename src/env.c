@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 16:12:31 by llelias           #+#    #+#             */
-/*   Updated: 2019/01/08 04:27:54 by llelias          ###   ########.fr       */
+/*   Updated: 2019/01/09 17:14:45 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		c_tetra(t_tetra *tset, int num, char *src)
 		if ((bin *= 2) && rd % 5 == 4)
 			if (src[rd] != '\n')
 				error();
-		if (rd % 5 != 0 && rd % 5 != 4)
+		if (rd % 5 != 4 && rd != 20)
 			if (src[rd] != '.' && src[rd] != '#')
 				error();
 		rd++;
