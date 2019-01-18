@@ -6,7 +6,7 @@
 /*   By: llelias <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 10:55:50 by llelias           #+#    #+#             */
-/*   Updated: 2019/01/09 17:06:00 by llelias          ###   ########.fr       */
+/*   Updated: 2019/01/17 17:21:32 by llelias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,32 @@ void		error(void)
 	exit(-1);
 }
 
-static int	check_tbl(int tbl[4][4])
+static int	aw_check_tbl(int tbl[4][4])
 {
-	int i;
-	int j;
+	int x[3];
 
-	i = -1;
-	j = -1;
-	while (++i < 4)
+	x[0] = -1;
+	x[2] = 0;
+	while (++x[0] < 4 && (x[1] = -1))
 	{
-		while (++j < 4)
+		while (++x[1] < 4)
 		{
-			if (tbl[i][j] == 1)
+			if (tbl[x[0]][x[1]] == 1)
 			{
-				if ((j - 1 < 0 || tbl[i][j - 1] != 1)
-					&& (j + 1 > 3 || tbl[i][j + 1] != 1)
-					&& (i + 1 > 3 || tbl[i + 1][j] != 1)
-					&& (i - 1 < 0 || tbl[i - 1][j] != 1))
-					return (0);
+				if (x[1] - 1 >= 0 && tbl[x[0]][x[1] - 1] == 1)
+					x[2]++;
+				if (x[1] + 1 <= 3 && tbl[x[0]][x[1] + 1] == 1)
+					x[2]++;
+				if (x[0] + 1 <= 3 && tbl[x[0] + 1][x[1]] == 1)
+					x[2]++;
+				if (x[0] - 1 >= 0 && tbl[x[0] - 1][x[1]] == 1)
+					x[2]++;
 			}
 		}
-		j = -1;
 	}
-	return (1);
+	if (x[2] == 6 || x[2] == 8)
+		return (1);
+	return (0);
 }
 
 static int	valid_t(t_tetra t)
@@ -73,7 +76,7 @@ static int	valid_t(t_tetra t)
 		}
 		j = -1;
 	}
-	return (check_tbl(tbl));
+	return (aw_check_tbl(tbl));
 }
 
 int			valid_tset(t_tetra *tset, int num)
